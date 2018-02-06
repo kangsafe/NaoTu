@@ -1,0 +1,33 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_open"
+        android:icon="@mipmap/ic_launcher"
+        android:title="打开"
+        app:showAsAction="always">
+        <menu>
+            <group>
+                <item
+                    android:id="@+id/action_open_mind"
+                    android:icon="@mipmap/ic_launcher"
+                    android:title="打开脑图"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_save_md"
+                    android:icon="@mipmap/ic_launcher"
+                    android:title="保存为md文件"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_save_txt"
+                    android:icon="@mipmap/ic_launcher"
+                    android:title="保存为纯文本"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_save_img"
+                    android:icon="@mipmap/ic_launcher"
+                    android:title="保存为图片"
+                    app:showAsAction="always" />
+            </group>
+        </menu>
+    </item>
+</menu>
