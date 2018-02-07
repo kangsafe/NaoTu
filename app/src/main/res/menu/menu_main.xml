@@ -13,9 +13,9 @@
                     android:title="打开脑图"
                     app:showAsAction="always" />
                 <item
-                    android:id="@+id/action_save_md"
+                    android:id="@+id/action_load_test"
                     android:icon="@mipmap/ic_launcher"
-                    android:title="保存为md文件"
+                    android:title="加载测试数据"
                     app:showAsAction="always" />
                 <item
                     android:id="@+id/action_save_txt"
