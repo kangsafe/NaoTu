@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NaoTu</string>
+    <string name="app_name">脑图</string>
     <string name="rationale_photo_picker">We require this permission to select photo from gallery and camera.</string>
     <string name="rationale_doc_picker">We need this pemission to read documents from device.</string>
 </resources>

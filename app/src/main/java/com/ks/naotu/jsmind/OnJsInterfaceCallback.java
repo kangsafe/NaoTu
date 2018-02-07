@@ -1,4 +1,4 @@
-package com.ks.naotu;
+package com.ks.naotu.jsmind;
 
 /**
  * Created by Admin on 2017/2/16 0016 15:56.

@@ -13,14 +13,27 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
     <!-- 读取手机状态 -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
     <application
+        android:name=".MyApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".jsmind.MainActivity">
+            <intent-filter>
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="main"
+                    android:scheme="naotu" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".kity.KityMinderActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

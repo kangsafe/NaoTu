@@ -1,4 +1,4 @@
-package com.ks.naotu;
+package com.ks.naotu.jsmind;
 
 import android.util.Log;
 import android.webkit.JavascriptInterface;

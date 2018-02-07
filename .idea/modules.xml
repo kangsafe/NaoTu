@@ -6,6 +6,7 @@
       <module fileurl="file://E:\Projects\kangsafe.github.com\naotu\NaoTu.iml" filepath="E:\Projects\kangsafe.github.com\naotu\NaoTu.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://E:\Projects\kangsafe.github.com\naotu\app\app.iml" filepath="E:\Projects\kangsafe.github.com\naotu\app\app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nlauncher/nlauncher.iml" filepath="$PROJECT_DIR$/nlauncher/nlauncher.iml" />
     </modules>
   </component>
 </project>

@@ -27,6 +27,47 @@
                     android:icon="@mipmap/ic_launcher"
                     android:title="保存为图片"
                     app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_show"
+                    android:title="显示/隐藏应用图标"
+                    app:showAsAction="ifRoom" />
+            </group>
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/action_node"
+        android:title="操作"
+        app:showAsAction="always">
+        <menu>
+            <group>
+                <item
+                    android:id="@+id/action_node_add"
+                    android:title="添加节点" />
+                <item
+                    android:id="@+id/action_node_remove"
+                    android:title="删除节点" />
+            </group>
+        </menu>
+    </item>
+    <item android:id="@+id/action_theme" android:title="主题" app:showAsAction="always">
+        <menu>
+            <group>
+                <item android:id="@+id/action_theme_primary" android:title="primary" app:showAsAction="always"/>
+                <item android:id="@+id/action_theme_warning" android:title="warning" app:showAsAction="always"/>
+                <item android:id="@+id/action_theme_danger" android:title="danger" app:showAsAction="always"/>
+                <item android:id="@+id/action_theme_success" android:title="success" app:showAsAction="always"/>
+                <item android:id="@+id/action_theme_info" android:title="info" app:showAsAction="always"/>
+                <item android:id="@+id/action_theme_greensea" android:title="greensea" app:showAsAction="always"/>
+                <item android:id="@+id/action_theme_nephrite" android:title="nephrite" app:showAsAction="always"/>
+                <item android:id="@+id/action_theme_belizehole" android:title="belizehole" app:showAsAction="always"/>
+                <item android:id="@+id/action_theme_wisteria" android:title="wisteria" app:showAsAction="always"/>
+                <item android:id="@+id/action_theme_asphalt" android:title="asphalt" app:showAsAction="always"/>
+                <item android:id="@+id/action_theme_orange" android:title="orange" app:showAsAction="always"/>
+                <item android:id="@+id/action_theme_pumpkin" android:title="pumpkin" app:showAsAction="always"/>
+                <item android:id="@+id/action_theme_pomegranate" android:title="pomegranate" app:showAsAction="always"/>
+                <item android:id="@+id/action_theme_clouds" android:title="clouds" app:showAsAction="always"/>
+                <item android:id="@+id/action_theme_asbestos" android:title="asbestos" app:showAsAction="always"/>
             </group>
         </menu>
     </item>

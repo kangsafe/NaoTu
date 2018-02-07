@@ -1,7 +1,10 @@
-package com.ks.naotu;
+package com.ks.naotu.jsmind;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,6 +15,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.Toast;
+
+import com.ks.naotu.R;
+import com.ks.naotu.utils.UriUtils;
 
 import java.util.List;
 
@@ -68,15 +75,104 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
             case R.id.action_save_img:
                 doSaveImage();
                 break;
+            case R.id.action_show:
+                doShow();
+                break;
+            case R.id.action_node_add:
+                doNodeAdd();
+                break;
+            case R.id.action_node_remove:
+                doNodeRemove();
+                break;
+            case R.id.action_theme_asbestos:
+                doTheme("asbestos");
+                break;
+            case R.id.action_theme_asphalt:
+                doTheme("asphalt");
+                break;
+            case R.id.action_theme_belizehole:
+                doTheme("belizehole");
+                break;
+            case R.id.action_theme_clouds:
+                doTheme("clouds");
+                break;
+            case R.id.action_theme_danger:
+                doTheme("danger");
+                break;
+            case R.id.action_theme_greensea:
+                doTheme("greensea");
+                break;
+            case R.id.action_theme_info:
+                doTheme("info");
+                break;
+            case R.id.action_theme_nephrite:
+                doTheme("nephrite");
+                break;
+            case R.id.action_theme_orange:
+                doTheme("orange");
+                break;
+            case R.id.action_theme_pomegranate:
+                doTheme("pomegranate");
+                break;
+            case R.id.action_theme_primary:
+                doTheme("primary");
+                break;
+            case R.id.action_theme_pumpkin:
+                doTheme("pumpkin");
+                break;
+            case R.id.action_theme_success:
+                doTheme("success");
+                break;
+            case R.id.action_theme_warning:
+                doTheme("warning");
+                break;
+            case R.id.action_theme_wisteria:
+                doTheme("wisteria");
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    public void doOpenMindTest(){
+    private void doTheme(String name) {
+        vweb.loadUrl("javascript:set_theme('" + name + "')");
+    }
+
+    private void doNodeAdd() {
+        vweb.loadUrl("javascript:add_node()");
+    }
+
+    private void doNodeRemove() {
+        vweb.loadUrl("javascript:remove_node()");
+    }
+
+    boolean isShow = false;
+
+    public void doShow() {
+        isShow = !isShow;
+        PackageManager pm = getPackageManager();
+        ComponentName componentName = new ComponentName(this, MainActivity.class);
+//        int res = pm.getComponentEnabledSetting(componentName);
+//        if (res == PackageManager.COMPONENT_ENABLED_STATE_DEFAULT
+//                || res == PackageManager.COMPONENT_ENABLED_STATE_ENABLED) {
+        if (isShow) {
+            // 显示应用图标
+            pm.setComponentEnabledSetting(componentName, PackageManager.COMPONENT_ENABLED_STATE_DEFAULT,
+                    PackageManager.DONT_KILL_APP);
+//            pm.setComponentEnabledSetting(componentName, PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+//                    PackageManager.DONT_KILL_APP);
+        } else {
+            // 隐藏应用图标
+            pm.setComponentEnabledSetting(componentName, PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                    PackageManager.DONT_KILL_APP);
+        }
+
+    }
+
+    public void doOpenMindTest() {
         vweb.loadUrl("javascript:open_json()");
     }
 
-    public void doSaveImage(){
+    public void doSaveImage() {
         vweb.loadUrl("javascript:screen_shot()");
     }
 
@@ -179,6 +275,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         return true;
     }
 
+    @SuppressLint("AddJavascriptInterface")
     @Override
     protected void onStart() {
         super.onStart();
@@ -238,7 +335,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
 
     @Override
     public void onToast(String msg) {
-
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override

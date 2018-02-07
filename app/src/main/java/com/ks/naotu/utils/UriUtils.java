@@ -1,4 +1,4 @@
-package com.ks.naotu;
+package com.ks.naotu.utils;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
