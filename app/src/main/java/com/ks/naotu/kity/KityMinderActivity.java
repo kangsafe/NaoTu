@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Toast;
@@ -34,6 +35,7 @@ public class KityMinderActivity extends AppCompatActivity implements OnJsKityCal
         WebSettings settings = vweb.getSettings();
         settings.setJavaScriptEnabled(true);
         settings.setSupportZoom(true);
+        settings.setAllowContentAccess(true);
         settings.setAllowFileAccess(true);
         settings.setAllowContentAccess(true);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -47,8 +49,49 @@ public class KityMinderActivity extends AppCompatActivity implements OnJsKityCal
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_kity_minder, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_mind_insert_next:
+                doNodeAddNext();
+                break;
+            case R.id.action_mind_insert_sibling:
+                doNodeAddSibling();
+                break;
+            case R.id.action_mind_insert_parent:
+                doNodeAddParent();
+                break;
+            case R.id.action_mind_remove:
+                doNodeRemove();
+                break;
+            case R.id.action_mind_move_up:
+                vweb.loadUrl("javascript:moveUp()");
+                break;
+            case R.id.action_mind_move_down:
+                vweb.loadUrl("javascript:moveDown()");
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void doNodeAddNext() {
+        vweb.loadUrl("javascript:addNodeNext()");
+    }
+
+    private void doNodeAddSibling() {
+        vweb.loadUrl("javascript:addNodeSibling()");
+    }
+
+    private void doNodeAddParent() {
+        vweb.loadUrl("javascript:addNodeParent()");
+    }
+
+    private void doNodeRemove() {
+        vweb.loadUrl("javascript:removeNode()");
     }
 
     @SuppressLint("AddJavascriptInterface")

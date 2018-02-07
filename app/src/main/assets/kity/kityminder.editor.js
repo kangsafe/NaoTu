@@ -2105,7 +2105,7 @@ angular.module('kityminderEditor').run(['$templateCache', function($templateCach
 
 
   $templateCache.put('ui/directive/kityminderEditor/kityminderEditor.html',
-    "<div class=\"minder-editor-container\"><div class=\"minder-editor\"></div><div class=\"km-note\" note-editor minder=\"minder\" ng-if=\"minder\"></div><div class=\"note-previewer\" note-previewer ng-if=\"minder\"></div></div>"
+    "<div class=\"minder-editor-container\"><div class=\"minder-editor\"></div><div class=\"km-note\" note-editor minder=\"minder\" ng-if=\"minder\"></div><div class=\"note-previewer\" note-previewer ng-if=\"minder\"></div><div class=\"navigator\" navigator minder=\"minder\" ng-if=\"minder\"></div></div>"
   );
 
 
@@ -2119,12 +2119,12 @@ angular.module('kityminderEditor').run(['$templateCache', function($templateCach
   );
 
 
-//  $templateCache.put('ui/directive/navigator/navigator.html',
-//    "<div class=\"nav-bar\"><div class=\"nav-btn zoom-in\" ng-click=\"minder.execCommand('zoomIn')\" title=\"{{ 'zoom-in' | lang : 'ui' }}\" ng-class=\"{ 'active' : getZoomRadio(zoom) == 0 }\"><div class=\"icon\"></div></div><div class=\"zoom-pan\"><div class=\"origin\" ng-style=\"{'transform': 'translate(0, ' + getHeight(100) + 'px)'}\" ng-click=\"minder.execCommand('zoom', 100);\"></div><div class=\"indicator\" ng-style=\"{\n" +
-//    "             'transform': 'translate(0, ' + getHeight(zoom) + 'px)',\n" +
-//    "             'transition': 'transform 200ms'\n" +
-//    "             }\"></div></div><div class=\"nav-btn zoom-out\" ng-click=\"minder.execCommand('zoomOut')\" title=\"{{ 'zoom-out' | lang : 'ui' }}\" ng-class=\"{ 'active' : getZoomRadio(zoom) == 1 }\"><div class=\"icon\"></div></div><div class=\"nav-btn hand\" ng-click=\"minder.execCommand('hand')\" title=\"{{ 'hand' | lang : 'ui' }}\" ng-class=\"{ 'active' : minder.queryCommandState('hand') == 1 }\"><div class=\"icon\"></div></div><div class=\"nav-btn camera\" ng-click=\"minder.execCommand('camera', minder.getRoot(), 600);\" title=\"{{ 'camera' | lang : 'ui' }}\"><div class=\"icon\"></div></div><div class=\"nav-btn nav-trigger\" ng-class=\"{'active' : isNavOpen}\" ng-click=\"toggleNavOpen()\" title=\"{{ 'navigator' | lang : 'ui' }}\"><div class=\"icon\"></div></div></div><div class=\"nav-previewer\" ng-show=\"isNavOpen\"></div>"
-//  );
+  $templateCache.put('ui/directive/navigator/navigator.html',
+    "<div class=\"nav-bar\"><div class=\"nav-btn zoom-in\" ng-click=\"minder.execCommand('zoomIn')\" title=\"{{ 'zoom-in' | lang : 'ui' }}\" ng-class=\"{ 'active' : getZoomRadio(zoom) == 0 }\"><div class=\"icon\"></div></div><div class=\"zoom-pan\"><div class=\"origin\" ng-style=\"{'transform': 'translate(0, ' + getHeight(100) + 'px)'}\" ng-click=\"minder.execCommand('zoom', 100);\"></div><div class=\"indicator\" ng-style=\"{\n" +
+    "             'transform': 'translate(0, ' + getHeight(zoom) + 'px)',\n" +
+    "             'transition': 'transform 200ms'\n" +
+    "             }\"></div></div><div class=\"nav-btn zoom-out\" ng-click=\"minder.execCommand('zoomOut')\" title=\"{{ 'zoom-out' | lang : 'ui' }}\" ng-class=\"{ 'active' : getZoomRadio(zoom) == 1 }\"><div class=\"icon\"></div></div><div class=\"nav-btn hand\" ng-click=\"minder.execCommand('hand')\" title=\"{{ 'hand' | lang : 'ui' }}\" ng-class=\"{ 'active' : minder.queryCommandState('hand') == 1 }\"><div class=\"icon\"></div></div><div class=\"nav-btn camera\" ng-click=\"minder.execCommand('camera', minder.getRoot(), 600);\" title=\"{{ 'camera' | lang : 'ui' }}\"><div class=\"icon\"></div></div><div class=\"nav-btn nav-trigger\" ng-class=\"{'active' : isNavOpen}\" ng-click=\"toggleNavOpen()\" title=\"{{ 'navigator' | lang : 'ui' }}\"><div class=\"icon\"></div></div></div><div class=\"nav-previewer\" ng-show=\"isNavOpen\"></div>"
+  );
 
 
 //  $templateCache.put('ui/directive/noteBtn/noteBtn.html',
@@ -3636,218 +3636,218 @@ angular.module('kityminderEditor')
  * @email : zhangbobell@163.com
  *
  * @copyright: Baidu FEX, 2015 */
-//angular.module('kityminderEditor')
-//    .directive('navigator', ['memory', 'config', function(memory, config) {
-//        return {
-//            restrict: 'A',
-//            templateUrl: 'ui/directive/navigator/navigator.html',
-//            scope: {
-//                minder: '='
-//            },
-//            link: function(scope) {
-//                minder.setDefaultOptions({zoom: config.get('zoom')});
-//
-//                scope.isNavOpen = !memory.get('navigator-hidden');
-//
-//                scope.getZoomRadio = function(value) {
-//                    var zoomStack = minder.getOption('zoom');
-//                    var minValue = zoomStack[0];
-//                    var maxValue = zoomStack[zoomStack.length - 1];
-//                    var valueRange = maxValue - minValue;
-//
-//                    return (1 - (value - minValue) / valueRange);
-//                };
-//
-//                scope.getHeight = function(value) {
-//                    var totalHeight = $('.zoom-pan').height();
-//
-//                    return scope.getZoomRadio(value) * totalHeight;
-//                };
-//
-//                // 初始的缩放倍数
-//                scope.zoom = 100;
-//
-//                // 发生缩放事件时
-//                minder.on('zoom', function(e) {
-//                    scope.zoom = e.zoom;
-//                });
-//
-//                scope.toggleNavOpen = function() {
-//                    scope.isNavOpen = !scope.isNavOpen;
-//                    memory.set('navigator-hidden', !scope.isNavOpen);
-//
-//                    if (scope.isNavOpen) {
-//                        bind();
-//                        updateContentView();
-//                        updateVisibleView();
-//                    } else{
-//                        unbind();
-//                    }
-//                };
-//
-//                setTimeout(function() {
-//                    if (scope.isNavOpen) {
-//                        bind();
-//                        updateContentView();
-//                        updateVisibleView();
-//                    } else{
-//                        unbind();
-//                    }
-//                }, 0);
-//
-//
-//
-//                function bind() {
-//                    minder.on('layout layoutallfinish', updateContentView);
-//                    minder.on('viewchange', updateVisibleView);
-//                }
-//
-//                function unbind() {
-//                    minder.off('layout layoutallfinish', updateContentView);
-//                    minder.off('viewchange', updateVisibleView);
-//                }
-//
-//
-//                /**  以下部分是缩略图导航器 *
-//                 * */
-//
-//                var $previewNavigator = $('.nav-previewer');
-//
-//                // 画布，渲染缩略图
-//                var paper = new kity.Paper($previewNavigator[0]);
-//
-//                // 用两个路径来挥之节点和连线的缩略图
-//                var nodeThumb = paper.put(new kity.Path());
-//                var connectionThumb = paper.put(new kity.Path());
-//
-//                // 表示可视区域的矩形
-//                var visibleRect = paper.put(new kity.Rect(100, 100).stroke('red', '1%'));
-//
-//                var contentView = new kity.Box(), visibleView = new kity.Box();
-//
-//                /**
-//                 * 增加一个对天盘图情况缩略图的处理,
-//                 * @Editor: Naixor line 104~129
-//                 * @Date: 2015.11.3
-//                 */
-//                var pathHandler = getPathHandler(minder.getTheme());
-//
-//                // 主题切换事件
-//                minder.on('themechange', function(e) {
-//                    pathHandler = getPathHandler(e.theme);
-//                });
-//
-//                function getPathHandler(theme) {
-//                    switch (theme) {
-//                        case "tianpan":
-//                        case "tianpan-compact":
-//                            return function(nodePathData, x, y, width, height) {
-//                                var r = width >> 1;
-//                                nodePathData.push('M', x, y + r,
-//                                    'a', r, r, 0, 1, 1, 0, 0.01,
-//                                    'z');
-//                            }
-//                        default: {
-//                            return function(nodePathData, x, y, width, height) {
-//                                nodePathData.push('M', x, y,
-//                                    'h', width, 'v', height,
-//                                    'h', -width, 'z');
-//                            }
-//                        }
-//                    }
-//                }
-//
-//                navigate();
-//
-//                function navigate() {
-//
-//                    function moveView(center, duration) {
-//                        var box = visibleView;
-//                        center.x = -center.x;
-//                        center.y = -center.y;
-//
-//                        var viewMatrix = minder.getPaper().getViewPortMatrix();
-//                        box = viewMatrix.transformBox(box);
-//
-//                        var targetPosition = center.offset(box.width / 2, box.height / 2);
-//
-//                        minder.getViewDragger().moveTo(targetPosition, duration);
-//                    }
-//
-//                    var dragging = false;
-//
-//                    paper.on('mousedown', function(e) {
-//                        dragging = true;
-//                        moveView(e.getPosition('top'), 200);
-//                        $previewNavigator.addClass('grab');
-//                    });
-//
-//                    paper.on('mousemove', function(e) {
-//                        if (dragging) {
-//                            moveView(e.getPosition('top'));
-//                        }
-//                    });
-//
-//                    $(window).on('mouseup', function() {
-//                        dragging = false;
-//                        $previewNavigator.removeClass('grab');
-//                    });
-//                }
-//
-//                function updateContentView() {
-//
-//                    var view = minder.getRenderContainer().getBoundaryBox();
-//
-//                    contentView = view;
-//
-//                    var padding = 30;
-//
-//                    paper.setViewBox(
-//                        view.x - padding - 0.5,
-//                        view.y - padding - 0.5,
-//                        view.width + padding * 2 + 1,
-//                        view.height + padding * 2 + 1);
-//
-//                    var nodePathData = [];
-//                    var connectionThumbData = [];
-//
-//                    minder.getRoot().traverse(function(node) {
-//                        var box = node.getLayoutBox();
-//                        pathHandler(nodePathData, box.x, box.y, box.width, box.height);
-//                        if (node.getConnection() && node.parent && node.parent.isExpanded()) {
-//                            connectionThumbData.push(node.getConnection().getPathData());
-//                        }
-//                    });
-//
-//                    paper.setStyle('background', minder.getStyle('background'));
-//
-//                    if (nodePathData.length) {
-//                        nodeThumb
-//                            .fill(minder.getStyle('root-background'))
-//                            .setPathData(nodePathData);
-//                    } else {
-//                        nodeThumb.setPathData(null);
-//                    }
-//
-//                    if (connectionThumbData.length) {
-//                        connectionThumb
-//                            .stroke(minder.getStyle('connect-color'), '0.5%')
-//                            .setPathData(connectionThumbData);
-//                    } else {
-//                        connectionThumb.setPathData(null);
-//                    }
-//
-//                    updateVisibleView();
-//                }
-//
-//                function updateVisibleView() {
-//                    visibleView = minder.getViewDragger().getView();
-//                    visibleRect.setBox(visibleView.intersect(contentView));
-//                }
-//
-//            }
-//        }
-//    }]);
+angular.module('kityminderEditor')
+    .directive('navigator', ['memory', 'config', function(memory, config) {
+        return {
+            restrict: 'A',
+            templateUrl: 'ui/directive/navigator/navigator.html',
+            scope: {
+                minder: '='
+            },
+            link: function(scope) {
+                minder.setDefaultOptions({zoom: config.get('zoom')});
+
+                scope.isNavOpen = !memory.get('navigator-hidden');
+
+                scope.getZoomRadio = function(value) {
+                    var zoomStack = minder.getOption('zoom');
+                    var minValue = zoomStack[0];
+                    var maxValue = zoomStack[zoomStack.length - 1];
+                    var valueRange = maxValue - minValue;
+
+                    return (1 - (value - minValue) / valueRange);
+                };
+
+                scope.getHeight = function(value) {
+                    var totalHeight = $('.zoom-pan').height();
+
+                    return scope.getZoomRadio(value) * totalHeight;
+                };
+
+                // 初始的缩放倍数
+                scope.zoom = 100;
+
+                // 发生缩放事件时
+                minder.on('zoom', function(e) {
+                    scope.zoom = e.zoom;
+                });
+
+                scope.toggleNavOpen = function() {
+                    scope.isNavOpen = !scope.isNavOpen;
+                    memory.set('navigator-hidden', !scope.isNavOpen);
+
+                    if (scope.isNavOpen) {
+                        bind();
+                        updateContentView();
+                        updateVisibleView();
+                    } else{
+                        unbind();
+                    }
+                };
+
+                setTimeout(function() {
+                    if (scope.isNavOpen) {
+                        bind();
+                        updateContentView();
+                        updateVisibleView();
+                    } else{
+                        unbind();
+                    }
+                }, 0);
+
+
+
+                function bind() {
+                    minder.on('layout layoutallfinish', updateContentView);
+                    minder.on('viewchange', updateVisibleView);
+                }
+
+                function unbind() {
+                    minder.off('layout layoutallfinish', updateContentView);
+                    minder.off('viewchange', updateVisibleView);
+                }
+
+
+                /**  以下部分是缩略图导航器 *
+                 * */
+
+                var $previewNavigator = $('.nav-previewer');
+
+                // 画布，渲染缩略图
+                var paper = new kity.Paper($previewNavigator[0]);
+
+                // 用两个路径来挥之节点和连线的缩略图
+                var nodeThumb = paper.put(new kity.Path());
+                var connectionThumb = paper.put(new kity.Path());
+
+                // 表示可视区域的矩形
+                var visibleRect = paper.put(new kity.Rect(100, 100).stroke('red', '1%'));
+
+                var contentView = new kity.Box(), visibleView = new kity.Box();
+
+                /**
+                 * 增加一个对天盘图情况缩略图的处理,
+                 * @Editor: Naixor line 104~129
+                 * @Date: 2015.11.3
+                 */
+                var pathHandler = getPathHandler(minder.getTheme());
+
+                // 主题切换事件
+                minder.on('themechange', function(e) {
+                    pathHandler = getPathHandler(e.theme);
+                });
+
+                function getPathHandler(theme) {
+                    switch (theme) {
+                        case "tianpan":
+                        case "tianpan-compact":
+                            return function(nodePathData, x, y, width, height) {
+                                var r = width >> 1;
+                                nodePathData.push('M', x, y + r,
+                                    'a', r, r, 0, 1, 1, 0, 0.01,
+                                    'z');
+                            }
+                        default: {
+                            return function(nodePathData, x, y, width, height) {
+                                nodePathData.push('M', x, y,
+                                    'h', width, 'v', height,
+                                    'h', -width, 'z');
+                            }
+                        }
+                    }
+                }
+
+                navigate();
+
+                function navigate() {
+
+                    function moveView(center, duration) {
+                        var box = visibleView;
+                        center.x = -center.x;
+                        center.y = -center.y;
+
+                        var viewMatrix = minder.getPaper().getViewPortMatrix();
+                        box = viewMatrix.transformBox(box);
+
+                        var targetPosition = center.offset(box.width / 2, box.height / 2);
+
+                        minder.getViewDragger().moveTo(targetPosition, duration);
+                    }
+
+                    var dragging = false;
+
+                    paper.on('mousedown', function(e) {
+                        dragging = true;
+                        moveView(e.getPosition('top'), 200);
+                        $previewNavigator.addClass('grab');
+                    });
+
+                    paper.on('mousemove', function(e) {
+                        if (dragging) {
+                            moveView(e.getPosition('top'));
+                        }
+                    });
+
+                    $(window).on('mouseup', function() {
+                        dragging = false;
+                        $previewNavigator.removeClass('grab');
+                    });
+                }
+
+                function updateContentView() {
+
+                    var view = minder.getRenderContainer().getBoundaryBox();
+
+                    contentView = view;
+
+                    var padding = 30;
+
+                    paper.setViewBox(
+                        view.x - padding - 0.5,
+                        view.y - padding - 0.5,
+                        view.width + padding * 2 + 1,
+                        view.height + padding * 2 + 1);
+
+                    var nodePathData = [];
+                    var connectionThumbData = [];
+
+                    minder.getRoot().traverse(function(node) {
+                        var box = node.getLayoutBox();
+                        pathHandler(nodePathData, box.x, box.y, box.width, box.height);
+                        if (node.getConnection() && node.parent && node.parent.isExpanded()) {
+                            connectionThumbData.push(node.getConnection().getPathData());
+                        }
+                    });
+
+                    paper.setStyle('background', minder.getStyle('background'));
+
+                    if (nodePathData.length) {
+                        nodeThumb
+                            .fill(minder.getStyle('root-background'))
+                            .setPathData(nodePathData);
+                    } else {
+                        nodeThumb.setPathData(null);
+                    }
+
+                    if (connectionThumbData.length) {
+                        connectionThumb
+                            .stroke(minder.getStyle('connect-color'), '0.5%')
+                            .setPathData(connectionThumbData);
+                    } else {
+                        connectionThumb.setPathData(null);
+                    }
+
+                    updateVisibleView();
+                }
+
+                function updateVisibleView() {
+                    visibleView = minder.getViewDragger().getView();
+                    visibleRect.setBox(visibleView.intersect(contentView));
+                }
+
+            }
+        }
+    }]);
 //angular.module('kityminderEditor')
 //    .directive('noteBtn', ['valueTransfer', function(valueTransfer) {
 //        return {

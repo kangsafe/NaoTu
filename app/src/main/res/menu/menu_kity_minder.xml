@@ -1,0 +1,285 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_redo"
+        android:title="撤销"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_undo"
+        android:title="重做"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_menu"
+        android:icon="@mipmap/ic_launcher"
+        android:title="菜单"
+        app:showAsAction="always">
+        <menu>
+            <group>
+                <item
+                    android:id="@+id/action_menu_open"
+                    android:icon="@mipmap/ic_launcher"
+                    android:title="打开"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_menu_new"
+                    android:icon="@mipmap/ic_launcher"
+                    android:title="新建"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_menu_save_as"
+                    android:icon="@mipmap/ic_launcher"
+                    android:title="另存为"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_menu_share"
+                    android:icon="@mipmap/ic_launcher"
+                    android:title="共享"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_menu_history"
+                    android:title="历史版本"
+                    app:showAsAction="ifRoom" />
+            </group>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/action_mind"
+        android:title="思路"
+        app:showAsAction="always">
+        <menu>
+            <group>
+                <item
+                    android:id="@+id/action_mind_insert_next"
+                    android:title="插入下级主题" />
+                <item
+                    android:id="@+id/action_mind_insert_sibling"
+                    android:title="插入同级主题" />
+                <item
+                    android:id="@+id/action_mind_insert_parent"
+                    android:title="插入上级主题" />
+            </group>
+            <group>
+                <item
+                    android:id="@+id/action_mind_move_up"
+                    android:title="上移" />
+                <item
+                    android:id="@+id/action_mind_move_down"
+                    android:title="下移" />
+                <item
+                    android:id="@+id/action_mind_modify"
+                    android:title="编辑" />
+                <item
+                    android:id="@+id/action_mind_remove"
+                    android:title="删除" />
+            </group>
+            <group>
+                <item
+                    android:id="@+id/action_mind_link_insert"
+                    android:title="上移" />
+                <item
+                    android:id="@+id/action_mind_link_remove"
+                    android:title="下移" />
+            </group>
+            <group>
+                <item
+                    android:id="@+id/action_mind_image_insert"
+                    android:title="插入图片" />
+                <item
+                    android:id="@+id/action_mind_image_remove"
+                    android:title="移除图片" />
+            </group>
+            <group>
+                <item
+                    android:id="@+id/action_mind_note_insert"
+                    android:title="插入备注" />
+                <item
+                    android:id="@+id/action_mind_note_remove"
+                    android:title="移除备注" />
+            </group>
+            <group>
+                <item
+                    android:id="@+id/action_mind_pri_remove"
+                    android:title="移除优先级" />
+                <item
+                    android:id="@+id/action_mind_pri_1"
+                    android:title="插入优先级1" />
+                <item
+                    android:id="@+id/action_mind_pri_2"
+                    android:title="插入优先级2" />
+                <item
+                    android:id="@+id/action_mind_pri_3"
+                    android:title="插入优先级3" />
+                <item
+                    android:id="@+id/action_mind_pri_4"
+                    android:title="插入优先级4" />
+                <item
+                    android:id="@+id/action_mind_pri_5"
+                    android:title="插入优先级5" />
+                <item
+                    android:id="@+id/action_mind_pri_6"
+                    android:title="插入优先级6" />
+                <item
+                    android:id="@+id/action_mind_pri_7"
+                    android:title="插入优先级7" />
+                <item
+                    android:id="@+id/action_mind_pri_8"
+                    android:title="插入优先级8" />
+                <item
+                    android:id="@+id/action_mind_pri_9"
+                    android:title="插入优先级9" />
+            </group>
+            <group>
+                <item
+                    android:id="@+id/action_mind_pro_remove"
+                    android:title="移除进度" />
+                <item
+                    android:id="@+id/action_mind_pro_1"
+                    android:title="未开始" />
+                <item
+                    android:id="@+id/action_mind_pro_2"
+                    android:title="完成1/8" />
+                <item
+                    android:id="@+id/action_mind_pro_3"
+                    android:title="完成2/8" />
+                <item
+                    android:id="@+id/action_mind_pro_4"
+                    android:title="完成3/8" />
+                <item
+                    android:id="@+id/action_mind_pro_5"
+                    android:title="完成4/8" />
+                <item
+                    android:id="@+id/action_mind_pro_6"
+                    android:title="完成5/8" />
+                <item
+                    android:id="@+id/action_mind_pro_7"
+                    android:title="完成6/8" />
+                <item
+                    android:id="@+id/action_mind_pro_8"
+                    android:title="完成7/8" />
+                <item
+                    android:id="@+id/action_mind_pro_9"
+                    android:title="完成" />
+            </group>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/action_theme"
+        android:title="外观"
+        app:showAsAction="always">
+        <menu>
+            <group>
+                <item
+                    android:id="@+id/action_mode_mind"
+                    android:title="思维导图"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_mode_org"
+                    android:title="组织结构图"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_mode_content"
+                    android:title="目录组织图"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_mode_fish"
+                    android:title="鱼骨图"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_mode_pan"
+                    android:title="天盘图"
+                    app:showAsAction="always" />
+            </group>
+            <group>
+                <item
+                    android:id="@+id/action_theme_classical"
+                    android:title="脑图经典"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_classical_thin"
+                    android:title="紧凑经典"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_blue"
+                    android:title="天空蓝"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_blue_thin"
+                    android:title="紧凑蓝"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_green"
+                    android:title="文艺绿"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_green_thin"
+                    android:title="紧凑绿"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_pink"
+                    android:title="脑残粉"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_pink_thin"
+                    android:title="紧凑粉"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_perl"
+                    android:title="浪漫紫"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_perl_thin"
+                    android:title="紧凑紫"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_red"
+                    android:title="清新红"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_red_thin"
+                    android:title="紧凑红"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_yellow"
+                    android:title="泥土黄"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_yellow_thin"
+                    android:title="紧凑黄"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_light"
+                    android:title="温柔冷光"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_light_thin"
+                    android:title="紧凑冷光"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_pan"
+                    android:title="经典天盘"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_pan_thin"
+                    android:title="紧凑天盘"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_fish"
+                    android:title="鱼骨图"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_line"
+                    android:title="线框图"
+                    app:showAsAction="always" />
+            </group>
+            <item
+                android:id="@+id/action_theme_layout"
+                android:title="整理布局"
+                app:showAsAction="always" />
+            <item
+                android:id="@+id/action_theme_clear"
+                android:title="清除样式"
+                app:showAsAction="always" />
+
+        </menu>
+    </item>
+</menu>
