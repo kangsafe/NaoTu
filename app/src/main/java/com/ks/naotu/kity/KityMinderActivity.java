@@ -5,15 +5,21 @@ import android.app.Dialog;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.webkit.WebSettings;
-import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.ks.naotu.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,7 +28,7 @@ import butterknife.OnClick;
 public class KityMinderActivity extends AppCompatActivity implements OnJsKityCallback {
 
     @BindView(R.id.vweb)
-    WebView vweb;
+    KityEditor vweb;
     JsKityInterface js = new JsKityInterface();
     @BindView(R.id.kity_node_parent)
     ImageView kityNodeParent;
@@ -40,16 +46,23 @@ public class KityMinderActivity extends AppCompatActivity implements OnJsKityCal
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
         setContentView(R.layout.activity_kity_minder);
         ButterKnife.bind(this);
         initView();
     }
 
     private void initView() {
+        List<String> list = new ArrayList<>();
+        list.add("Item1");
+        list.add("Item2");
+        list.add("APIWeb");
+        //设置item
+        vweb.setActionList(list);
+
         vweb.loadUrl("file:///android_asset/kity/index.html");
         WebSettings settings = vweb.getSettings();
         settings.setJavaScriptEnabled(true);
-        settings.setSupportZoom(true);
         settings.setAllowContentAccess(true);
         settings.setAllowFileAccess(true);
         settings.setAllowContentAccess(true);
@@ -58,7 +71,25 @@ public class KityMinderActivity extends AppCompatActivity implements OnJsKityCal
             settings.setAllowUniversalAccessFromFileURLs(true);
         }
         settings.setAppCacheEnabled(true);
-        settings.setBuiltInZoomControls(false);
+//        settings.setSupportZoom(true);
+//        settings.setBuiltInZoomControls(true);
+//        settings.setDisplayZoomControls(true);
+        settings.setDomStorageEnabled(true);
+        //任意比例缩放
+//        settings.setUseWideViewPort(true);
+        //增加点击回调
+        vweb.setActionSelectListener(new KityEditor.ActionSelectListener() {
+            @Override
+            public void onClick(String title, String selectText) {
+//                if(title.equals("APIWeb")) {
+//                    Intent intent = new Intent(KityMinderActivity.this, MainActivity.class);
+//                    startActivity(intent);
+//                    return;
+//                }
+                Toast.makeText(KityMinderActivity.this, "Click Item: " + title + "。\n\nValue: " + selectText, Toast.LENGTH_LONG).show();
+            }
+        });
+
         js.setListener(this);
     }
 
@@ -291,9 +322,6 @@ public class KityMinderActivity extends AppCompatActivity implements OnJsKityCal
         return super.onOptionsItemSelected(item);
     }
 
-    private void doNodeRemove() {
-        vweb.loadUrl("javascript:removeNode()");
-    }
 
     @SuppressLint("AddJavascriptInterface")
     @Override
@@ -345,7 +373,5 @@ public class KityMinderActivity extends AppCompatActivity implements OnJsKityCal
         d.setTitle(title);
         d.show();
     }
-
-
     //****js callbak end
 }
