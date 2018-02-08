@@ -3,4 +3,12 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="kity_theme_classic">#dfdf98</color>
+    <color name="kity_theme_fresh_blue">#73a1bf</color>
+    <color name="kity_theme_fresh_green">#73bf76</color>
+    <color name="kity_theme_fresh_pink">#bf7394</color>
+    <color name="kity_theme_fresh_purple">#7b73bf</color>
+    <color name="kity_theme_fresh_red">#bf7373</color>
+    <color name="kity_theme_fresh_soil">#bf9373</color>
+    <color name="kity_theme_snow">#e9df98</color>
 </resources>

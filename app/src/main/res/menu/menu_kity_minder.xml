@@ -2,16 +2,186 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_redo"
+        android:orderInCategory="100"
         android:title="撤销"
         app:showAsAction="always" />
     <item
         android:id="@+id/action_undo"
+        android:orderInCategory="101"
         android:title="重做"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/action_layout"
+        android:icon="@drawable/icon_layout"
+        android:orderInCategory="102"
+        android:title="布局"
+        app:showAsAction="always">
+        <menu>
+            <group
+                android:checkableBehavior="single"
+                android:enabled="true"
+                android:menuCategory="secondary"
+                android:orderInCategory="100">
+                <item
+                    android:id="@+id/action_template_mind"
+                    android:icon="@mipmap/icon_template_mind"
+                    android:title="思维导图"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_template_structure"
+                    android:icon="@mipmap/icon_template_structure"
+                    android:title="组织结构图"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_template_file_tree"
+                    android:icon="@mipmap/icon_template_file_tree"
+                    android:title="目录组织图"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_template_right"
+                    android:icon="@mipmap/icon_template_right"
+                    android:title="逻辑结构图"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_template_fish_bone"
+                    android:icon="@mipmap/icon_template_fish_bone"
+                    android:title="鱼骨图"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_template_tianpan"
+                    android:icon="@mipmap/icon_template_tianpan"
+                    android:title="天盘图"
+                    app:showAsAction="always" />
+            </group>
+            <item
+                android:id="@+id/action_layout_reset"
+                android:icon="@drawable/icon_layout_reset"
+                android:orderInCategory="101"
+                android:title="整理布局" />
+            <item
+                android:icon="@drawable/icon_style_clear"
+                android:id="@+id/action_style_clear"
+                android:orderInCategory="102"
+                android:title="清除样式" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/action_theme"
+        android:icon="@drawable/icon_theme"
+        android:orderInCategory="103"
+        android:title="主题"
+        app:showAsAction="always">
+        <menu>
+            <group
+                android:checkableBehavior="single"
+                android:menuCategory="secondary">
+                <item
+                    android:id="@+id/action_theme_classic"
+                    android:icon="@drawable/icon_theme_classic"
+                    android:title="脑图经典"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_classic_compact"
+                    android:icon="@drawable/icon_theme_classic"
+                    android:title="紧凑经典"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_fresh_blue"
+                    android:icon="@drawable/icon_theme_fresh_blue"
+                    android:title="天空蓝"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_fresh_blue_compat"
+                    android:icon="@drawable/icon_theme_fresh_blue"
+                    android:title="紧凑蓝"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_fresh_green"
+                    android:icon="@drawable/icon_theme_fresh_green"
+                    android:title="文艺绿"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_fresh_green_compat"
+                    android:icon="@drawable/icon_theme_fresh_green"
+                    android:title="紧凑绿"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_fresh_pink"
+                    android:icon="@drawable/icon_theme_fresh_pink"
+                    android:title="脑残粉"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_fresh_pink_compat"
+                    android:icon="@drawable/icon_theme_fresh_pink"
+                    android:title="紧凑粉"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_fresh_purple"
+                    android:icon="@drawable/icon_theme_fresh_purple"
+                    android:title="浪漫紫"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_fresh_purple_compat"
+                    android:icon="@drawable/icon_theme_fresh_purple"
+                    android:title="紧凑紫"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_fresh_red"
+                    android:icon="@drawable/icon_theme_fresh_red"
+                    android:title="清新红"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_fresh_red_compat"
+                    android:icon="@drawable/icon_theme_fresh_red"
+                    android:title="紧凑红"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_fresh_soil"
+                    android:icon="@drawable/icon_theme_fresh_soil"
+                    android:title="泥土黄"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_fresh_soil_compat"
+                    android:icon="@drawable/icon_theme_fresh_soil"
+                    android:title="紧凑黄"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_snow"
+                    android:icon="@drawable/icon_theme_snow"
+                    android:title="温柔冷光"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_snow_compact"
+                    android:icon="@drawable/icon_theme_snow"
+                    android:title="紧凑冷光"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_tianpan"
+                    android:icon="@drawable/icon_theme_tianpan"
+                    android:title="经典天盘"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_tianpan_compact"
+                    android:icon="@drawable/icon_theme_tianpan"
+                    android:title="紧凑天盘"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_fish"
+                    android:icon="@drawable/icon_theme_tianpan"
+                    android:title="鱼骨图"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/action_theme_wire"
+                    android:title="线框图"
+                    app:showAsAction="always" />
+            </group>
+        </menu>
+    </item>
     <item
         android:id="@+id/action_menu"
         android:icon="@mipmap/ic_launcher"
         android:title="菜单"
+        android:visible="false"
         app:showAsAction="always">
         <menu>
             <group>
@@ -45,40 +215,21 @@
     <item
         android:id="@+id/action_mind"
         android:title="思路"
+        android:visible="false"
         app:showAsAction="always">
         <menu>
             <group>
                 <item
-                    android:id="@+id/action_mind_insert_next"
-                    android:title="插入下级主题" />
-                <item
-                    android:id="@+id/action_mind_insert_sibling"
-                    android:title="插入同级主题" />
-                <item
-                    android:id="@+id/action_mind_insert_parent"
-                    android:title="插入上级主题" />
-            </group>
-            <group>
-                <item
-                    android:id="@+id/action_mind_move_up"
-                    android:title="上移" />
-                <item
-                    android:id="@+id/action_mind_move_down"
-                    android:title="下移" />
-                <item
                     android:id="@+id/action_mind_modify"
                     android:title="编辑" />
-                <item
-                    android:id="@+id/action_mind_remove"
-                    android:title="删除" />
             </group>
             <group>
                 <item
                     android:id="@+id/action_mind_link_insert"
-                    android:title="上移" />
+                    android:title="插入链接" />
                 <item
                     android:id="@+id/action_mind_link_remove"
-                    android:title="下移" />
+                    android:title="移除链接" />
             </group>
             <group>
                 <item
@@ -160,126 +311,6 @@
                     android:id="@+id/action_mind_pro_9"
                     android:title="完成" />
             </group>
-        </menu>
-    </item>
-    <item
-        android:id="@+id/action_theme"
-        android:title="外观"
-        app:showAsAction="always">
-        <menu>
-            <group>
-                <item
-                    android:id="@+id/action_mode_mind"
-                    android:title="思维导图"
-                    app:showAsAction="always" />
-                <item
-                    android:id="@+id/action_mode_org"
-                    android:title="组织结构图"
-                    app:showAsAction="always" />
-                <item
-                    android:id="@+id/action_mode_content"
-                    android:title="目录组织图"
-                    app:showAsAction="always" />
-                <item
-                    android:id="@+id/action_mode_fish"
-                    android:title="鱼骨图"
-                    app:showAsAction="always" />
-                <item
-                    android:id="@+id/action_mode_pan"
-                    android:title="天盘图"
-                    app:showAsAction="always" />
-            </group>
-            <group>
-                <item
-                    android:id="@+id/action_theme_classical"
-                    android:title="脑图经典"
-                    app:showAsAction="always" />
-                <item
-                    android:id="@+id/action_theme_classical_thin"
-                    android:title="紧凑经典"
-                    app:showAsAction="always" />
-                <item
-                    android:id="@+id/action_theme_blue"
-                    android:title="天空蓝"
-                    app:showAsAction="always" />
-                <item
-                    android:id="@+id/action_theme_blue_thin"
-                    android:title="紧凑蓝"
-                    app:showAsAction="always" />
-                <item
-                    android:id="@+id/action_theme_green"
-                    android:title="文艺绿"
-                    app:showAsAction="always" />
-                <item
-                    android:id="@+id/action_theme_green_thin"
-                    android:title="紧凑绿"
-                    app:showAsAction="always" />
-                <item
-                    android:id="@+id/action_theme_pink"
-                    android:title="脑残粉"
-                    app:showAsAction="always" />
-                <item
-                    android:id="@+id/action_theme_pink_thin"
-                    android:title="紧凑粉"
-                    app:showAsAction="always" />
-                <item
-                    android:id="@+id/action_theme_perl"
-                    android:title="浪漫紫"
-                    app:showAsAction="always" />
-                <item
-                    android:id="@+id/action_theme_perl_thin"
-                    android:title="紧凑紫"
-                    app:showAsAction="always" />
-                <item
-                    android:id="@+id/action_theme_red"
-                    android:title="清新红"
-                    app:showAsAction="always" />
-                <item
-                    android:id="@+id/action_theme_red_thin"
-                    android:title="紧凑红"
-                    app:showAsAction="always" />
-                <item
-                    android:id="@+id/action_theme_yellow"
-                    android:title="泥土黄"
-                    app:showAsAction="always" />
-                <item
-                    android:id="@+id/action_theme_yellow_thin"
-                    android:title="紧凑黄"
-                    app:showAsAction="always" />
-                <item
-                    android:id="@+id/action_theme_light"
-                    android:title="温柔冷光"
-                    app:showAsAction="always" />
-                <item
-                    android:id="@+id/action_theme_light_thin"
-                    android:title="紧凑冷光"
-                    app:showAsAction="always" />
-                <item
-                    android:id="@+id/action_theme_pan"
-                    android:title="经典天盘"
-                    app:showAsAction="always" />
-                <item
-                    android:id="@+id/action_theme_pan_thin"
-                    android:title="紧凑天盘"
-                    app:showAsAction="always" />
-                <item
-                    android:id="@+id/action_theme_fish"
-                    android:title="鱼骨图"
-                    app:showAsAction="always" />
-                <item
-                    android:id="@+id/action_theme_line"
-                    android:title="线框图"
-                    app:showAsAction="always" />
-            </group>
-            <item
-                android:id="@+id/action_theme_layout"
-                android:title="整理布局"
-                app:showAsAction="always" />
-            <item
-                android:id="@+id/action_theme_clear"
-                android:title="清除样式"
-                app:showAsAction="always" />
-
         </menu>
     </item>
 </menu>

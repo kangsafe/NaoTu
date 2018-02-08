@@ -67,44 +67,6 @@
 					window.minder = minder;
 				};
 			});
-    function addNodeNext(){
-        window.editor.minder.execCommand('appendchildnode', '分支主题');
-        <!--editText();-->
-    }
-    function addNodeSibling(){
-        window.editor.minder.execCommand('appendsiblingnode','分支主题');
-        <!--editText();-->
-    }
-    function addNodeParent(){
-        window.editor.minder.execCommand('appendparentnode','分支主题');
-        <!--editText();-->
-    }
-    function removeNode(){
-        window.editor.minder.execCommand('removenode');
-    }
-
-    function moveUp(){
-        if(minder.queryCommandState('ArrangeUp') === 0){
-            minder.execCommand('ArrangeUp');
-        }
-    }
-
-    function moveDown(){
-        if(minder.queryCommandState('ArrangeUp') === 0){
-            minder.execCommand('ArrangeDown');
-        }
-    }
-    function editText() {
-                    var receiverElement = window.editor.receiver.element;
-                    var fsm = editor.fsm;
-                    var receiver = window.editor.receiver;
-
-                    receiverElement.innerText = window.editor.minder.queryCommandValue('text');
-                    fsm.jump('input', 'input-request');
-                    receiver.selectAll();
-    }
-
-
 </script>
 
 </html>

@@ -1,13 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.ks.naotu.kity.KityMinderActivity">
 
     <WebView
         android:id="@+id/vweb"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</android.support.constraint.ConstraintLayout>
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_gray"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/kity_node_parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@mipmap/icon_node_parent" />
+
+        <ImageView
+            android:id="@+id/kity_node_sidling"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@mipmap/icon_node_sidling" />
+
+        <ImageView
+            android:id="@+id/kity_node_child"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@mipmap/icon_node_child" />
+
+        <ImageView
+            android:id="@+id/kity_node_move_up"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@mipmap/icon_node_move_up" />
+
+        <ImageView
+            android:id="@+id/kity_node_move_down"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@mipmap/icon_node_move_down" />
+
+        <ImageView
+            android:id="@+id/kity_node_delete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@mipmap/icon_node_delete" />
+    </LinearLayout>
+</LinearLayout>
