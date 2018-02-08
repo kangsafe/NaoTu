@@ -33,7 +33,9 @@
                     android:scheme="naotu" />
             </intent-filter>
         </activity>
-        <activity android:name=".kity.KityMinderActivity">
+        <activity
+            android:name=".kity.KityMinderActivity"
+            android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
