@@ -18,7 +18,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/bg_gray"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="10dp">
 
         <ImageView
             android:id="@+id/kity_node_parent"
@@ -61,5 +62,20 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:src="@mipmap/icon_node_delete" />
+
+        <ImageView
+            android:id="@+id/kity_move_center"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@mipmap/icon_move_center" />
+
+        <ImageView
+            android:id="@+id/kity_move_hand"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:tag="move"
+            android:src="@mipmap/move" />
     </LinearLayout>
 </LinearLayout>

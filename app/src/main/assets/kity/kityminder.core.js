@@ -1442,6 +1442,7 @@ _p[16] = {
         var Minder = _p.r(19);
         function listen(element, type, handler) {
             type.split(" ").forEach(function(name) {
+                console.log('element.addEventListener');
                 element.addEventListener(name, handler, false);
             });
         }
@@ -3214,6 +3215,7 @@ _p[28] = {
             //当前选区中的节点在给定的节点范围内的保留选中状态，
             //没在给定范围的取消选中，给定范围中的但没在当前选中范围的也做选中效果
             toggleSelect: function(node) {
+                console.log('toggleSelect');
                 if (utils.isArray(node)) {
                     node.forEach(this.toggleSelect.bind(this));
                 } else {
@@ -5029,6 +5031,7 @@ _p[45] = {
                         e.preventDefault();
                     },
                     statuschange: function(e) {
+                        console.log('statuschange');
                         if (e.lastStatus == "textedit" && e.currentStatus == "normal") {
                             dragger.preventDragMove();
                         }
@@ -5183,6 +5186,7 @@ _p[46] = {
                     this.on("dblclick click mouseup", function(e) {
                         e.stopPropagation();
                         e.preventDefault();
+                        console.log('Expander:click');
                     });
                 },
                 setState: function(state) {
@@ -5241,6 +5245,7 @@ _p[46] = {
                         if (!visible) e.stopPropagation();
                     },
                     "normal.keydown": function(e) {
+                        console.log('normal.keydown');
                         if (this.getStatus() == "textedit") return;
                         if (e.originEvent.keyCode == keymap["/"]) {
                             var node = this.getSelectedNode();
@@ -6876,6 +6881,7 @@ _p[58] = {
         var Module = _p.r(20);
         var Renderer = _p.r(27);
         Module.register("Select", function() {
+            console.log('Select');
             var minder = this;
             var rc = minder.getRenderContainer();
             // 在实例上渲染框选矩形、计算框选范围的对象
@@ -6943,6 +6949,7 @@ _p[58] = {
                         window.getSelection().removeAllRanges();
                     },
                     selectEnd: function(e) {
+                        console.log('marqueeActivator:selectEnd');
                         if (startPosition) {
                             startPosition = null;
                         }
@@ -6959,11 +6966,13 @@ _p[58] = {
             return {
                 init: function() {
                     window.addEventListener("mouseup", function() {
+                        console.log('init:mouseup');
                         marqueeActivator.selectEnd();
                     });
                 },
                 events: {
                     mousedown: function(e) {
+                        console.log('events:mousedown');
                         var downNode = e.getTargetNode();
                         // 没有点中节点：
                         //     清除选中状态，并且标记选区开始位置
@@ -6971,17 +6980,24 @@ _p[58] = {
                             this.removeAllSelectedNodes();
                             marqueeActivator.selectStart(e);
                             this.setStatus("normal");
+                            console.log('normal');
+                            window.kminder.onOutsideClick();
                         } else if (e.isShortcutKey("Ctrl")) {
                             this.toggleSelect(downNode);
+                            console.log('Ctrl');
                         } else if (!downNode.isSelected()) {
                             this.select(downNode, true);
+                            console.log('isSelected');
+                            window.kminder.onNodeClick();//.onNodeClick();
                         } else if (!this.isSingleSelect()) {
                             lastDownNode = downNode;
                             lastDownPosition = e.getPosition();
+                            console.log('isSingleSelect');
                         }
                     },
                     mousemove: marqueeActivator.selectMove,
                     mouseup: function(e) {
+                        console.log('events:mouseup');
                         var upNode = e.getTargetNode();
                         // 如果 mouseup 发生在 lastDownNode 外，是无需理会的
                         if (upNode && upNode == lastDownNode) {
@@ -6989,12 +7005,16 @@ _p[58] = {
                             var movement = kity.Vector.fromPoints(lastDownPosition, upPosition);
                             if (movement.length() < 1) this.select(lastDownNode, true);
                             lastDownNode = null;
+                            console.log('upNode');
+                        }else{
+                            console.log('NotupNode');
                         }
                         // 清理一下选择状态
                         marqueeActivator.selectEnd(e);
                     },
                     //全选操作
                     "normal.keydown": function(e) {
+                        console.log('normal.keydown');
                         if (e.isShortcutKey("ctrl+a")) {
                             var selectedNodes = [];
                             this.getRoot().traverse(function(node) {
@@ -7454,6 +7474,7 @@ _p[61] = {
                     dragger._minder.fire("viewchanged");
                 }
                 this._minder.on("normal.mousedown normal.touchstart " + "inputready.mousedown inputready.touchstart " + "readonly.mousedown readonly.touchstart", function(e) {
+//                    console.log('_minder');
                     if (e.originEvent.button == 2) {
                         e.originEvent.preventDefault();
                     }
@@ -7463,6 +7484,7 @@ _p[61] = {
                         isTempDrag = true;
                     }
                 }).on("normal.mousemove normal.touchmove " + "readonly.mousemove readonly.touchmove " + "inputready.mousemove inputready.touchmove", function(e) {
+//                    console.log('_minder');
                     if (e.type == "touchmove") {
                         e.preventDefault();
                     }

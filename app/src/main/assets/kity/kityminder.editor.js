@@ -1178,6 +1178,7 @@ _p[12] = {
                     // 解决过大内容导致SVG窜位问题
                     receiverElement.innerHTML = "";
                 }, 0);
+                console.log('init');
                 var node = minder.getSelectedNode();
                 textNodes = commitInputText(textNodes);
                 commitInputNode(node, textNodes);
@@ -1256,6 +1257,7 @@ _p[13] = {
             var hotbox = this.hotbox;
             // normal -> *
             receiver.listen("normal", function(e) {
+                console.log('receiver:normal');
                 // 为了防止处理进入edit模式而丢失处理的首字母,此时receiver必须为enable
                 receiver.enable();
                 // normal -> hotbox
@@ -1307,6 +1309,7 @@ _p[13] = {
             });
             // input => normal
             receiver.listen("input", function(e) {
+                console.log('receiver:input');
                 receiver.enable();
                 if (e.type == "keydown") {
                     if (e.is("Enter")) {
@@ -1585,12 +1588,13 @@ _p[18] = {
         var key = _p.r(23);
         var hotbox = _p.r(2);
         function ReceiverRuntime() {
+            console.log('ReceiverRuntime')
             var fsm = this.fsm;
             var minder = this.minder;
             var me = this;
             // 接收事件的 div
             var element = document.createElement("div");
-            element.contentEditable = true;
+            element.contentEditable = false;
             /**
          * @Desc: 增加tabindex属性使得element的contenteditable不管是trur还是false都能有focus和blur事件
          * @Editor: Naixor
@@ -1603,15 +1607,19 @@ _p[18] = {
             // receiver 对象
             var receiver = {
                 element: element,
-                selectAll: function() {
+                selectAll: function(e) {
                     // 保证有被选中的
                     if (!element.innerHTML) element.innerHTML = "&nbsp;";
+                    console.log('selectAll:'+element.innerHTML);
                     var range = document.createRange();
                     var selection = window.getSelection();
                     range.selectNodeContents(element);
                     selection.removeAllRanges();
                     selection.addRange(range);
-                    element.focus();
+                    if(element.classList.contains("input")){
+                        this.enable();
+                        element.focus();
+                    }
                 },
                 /**
              * @Desc: 增加enable和disable方法用于解决热核态的输入法屏蔽问题
@@ -1657,6 +1665,7 @@ _p[18] = {
             var listeners = [];
             // 侦听指定状态下的事件，如果不传 state，侦听所有状态
             receiver.listen = function(state, listener) {
+                console.log(state);
                 if (arguments.length == 1) {
                     listener = state;
                     state = "*";
@@ -1675,6 +1684,7 @@ _p[18] = {
                 var listener, jumpState;
                 for (var i = 0; i < listeners.length; i++) {
                     listener = listeners[i];
+                    console.log(listener);
                     // 忽略不在侦听状态的侦听器
                     if (listener.notifyState != "*" && listener.notifyState != fsm.state()) {
                         continue;
@@ -2157,8 +2167,8 @@ angular.module('kityminderEditor').run(['$templateCache', function($templateCach
 //  $templateCache.put('ui/directive/priorityEditor/priorityEditor.html',
 //    "<ul class=\"km-priority tool-group\" ng-disabled=\"commandDisabled\"><li class=\"km-priority-item tool-group-item\" ng-repeat=\"p in priorities\" ng-click=\"commandDisabled || minder.execCommand('priority', p)\" ng-class=\"{ active: commandValue == p }\" title=\"{{ getPriorityTitle(p) }}\"><div class=\"km-priority-icon tool-group-icon priority-{{p}}\"></div></li></ul>"
 //  );
-
-
+//
+//
 //  $templateCache.put('ui/directive/progressEditor/progressEditor.html',
 //    "<ul class=\"km-progress tool-group\" ng-disabled=\"commandDisabled\"><li class=\"km-progress-item tool-group-item\" ng-repeat=\"p in progresses\" ng-click=\"commandDisabled || minder.execCommand('progress', p)\" ng-class=\"{ active: commandValue == p }\" title=\"{{ getProgressTitle(p) }}\"><div class=\"km-progress-icon tool-group-icon progress-{{p}}\"></div></li></ul>"
 //  );

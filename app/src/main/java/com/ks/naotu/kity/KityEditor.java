@@ -172,6 +172,7 @@ public class KityEditor extends WebView {
 
     private int mode = 0;
     float oldDist;
+    int zoom = 100;
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -188,11 +189,29 @@ public class KityEditor extends WebView {
                 break;
             case MotionEvent.ACTION_POINTER_DOWN:
                 oldDist = spacing(event);
+                Log.i("TAG", "原距离：" + oldDist + "");
                 mode += 1;
                 break;
             case MotionEvent.ACTION_MOVE:
                 if (mode >= 2) {
                     float newDist = spacing(event);
+                    Log.i("TAG", "新距离：" + newDist + "");
+//                    float delta = 500;
+//                    //放大
+//                    if (newDist - oldDist > 0) {
+//                        if (newDist - oldDist > delta) {
+//                            zoom(200);
+//                        } else {
+//                            zoom(100+(int) (newDist - oldDist) / delta * 100);
+//                        }
+//                    } else {//缩小
+//                        if (oldDist - newDist < 10) {
+//                            zoom(10);
+//                        } else {
+//                            zoom((oldDist - newDist) / delta * 100);
+//                        }
+//                    }
+                    //zoom(newDist - oldDist);
                     if (newDist > oldDist + 1) {
                         zoom(newDist / oldDist);
                         oldDist = newDist;
@@ -214,7 +233,7 @@ public class KityEditor extends WebView {
         } else if (f < 1 && Math.abs(f - 1) * 100 > 2) {
             loadUrl("javascript:minder.execCommand('zoomOut')");
         }
-//        loadUrl("javascript:minder.execCommand('zoom','" + f * 100 + "')");
+//        loadUrl("javascript:minder.execCommand('zoom','" + f + "')");
     }
 
     private float spacing(MotionEvent event) {

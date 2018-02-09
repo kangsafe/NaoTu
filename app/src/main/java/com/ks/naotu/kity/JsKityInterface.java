@@ -32,6 +32,20 @@ public class JsKityInterface {
         listener.onDialog(title, content);
     }
 
+    @JavascriptInterface
+    public void onNodeClick() {
+        listener.onNodeClick();
+    }
+
+    @JavascriptInterface
+    public void onOutsideClick() {
+        listener.onOutsideClick();
+    }
+
+    @JavascriptInterface
+    public void onEdit() {
+        listener.onEdit();
+    }
 //    /**
 //     * 屏幕截图
 //     * @param name

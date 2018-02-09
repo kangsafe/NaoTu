@@ -4,14 +4,12 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.webkit.WebSettings;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -42,6 +40,10 @@ public class KityMinderActivity extends AppCompatActivity implements OnJsKityCal
     ImageView kityNodeMoveDown;
     @BindView(R.id.kity_node_delete)
     ImageView kityNodeDelete;
+    @BindView(R.id.kity_move_center)
+    ImageView kityMoveCenter;
+    @BindView(R.id.kity_move_hand)
+    ImageView kityMoveHand;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -327,16 +329,16 @@ public class KityMinderActivity extends AppCompatActivity implements OnJsKityCal
     @Override
     protected void onStart() {
         super.onStart();
-        vweb.addJavascriptInterface(js, "kity");
+        vweb.addJavascriptInterface(js, "kminder");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        vweb.removeJavascriptInterface("kity");
+        vweb.removeJavascriptInterface("kminder");
     }
 
-    @OnClick({R.id.kity_node_parent, R.id.kity_node_sidling, R.id.kity_node_child, R.id.kity_node_move_up, R.id.kity_node_move_down, R.id.kity_node_delete})
+    @OnClick({R.id.kity_move_hand, R.id.kity_move_center, R.id.kity_node_parent, R.id.kity_node_sidling, R.id.kity_node_child, R.id.kity_node_move_up, R.id.kity_node_move_down, R.id.kity_node_delete})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.kity_node_parent:
@@ -357,6 +359,19 @@ public class KityMinderActivity extends AppCompatActivity implements OnJsKityCal
             case R.id.kity_node_delete:
                 vweb.loadUrl("javascript:minder.execCommand('removenode')");
                 break;
+            case R.id.kity_move_center:
+                vweb.loadUrl("javascript:minder.execCommand('camera', minder.getRoot(), 600)");
+                break;
+            case R.id.kity_move_hand:
+                vweb.loadUrl("javascript:minder.execCommand('hand')");
+                if(kityMoveHand.getTag().toString().equals("move")) {
+                    kityMoveHand.setImageResource(R.mipmap.icon_move_selected);
+                    kityMoveHand.setTag("selected");
+                }else{
+                    kityMoveHand.setImageResource(R.mipmap.move);
+                    kityMoveHand.setTag("move");
+                }
+                break;
         }
     }
 
@@ -373,5 +388,55 @@ public class KityMinderActivity extends AppCompatActivity implements OnJsKityCal
         d.setTitle(title);
         d.show();
     }
+
+    @Override
+    public void onNodeClick() {
+        handler.sendEmptyMessage(2);
+        Toast.makeText(getApplicationContext(), "节点选中", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onOutsideClick() {
+        handler.sendEmptyMessage(1);
+        Toast.makeText(getApplicationContext(), "取消选中", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onEdit() {
+        handler.sendEmptyMessage(0);
+    }
     //****js callbak end
+
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 0:
+                    showKeybord();
+                    break;
+                case 1:
+                    hideKeybord();
+                    break;
+                case 2:
+                    vweb.loadUrl("javascript:minder.hotbox.active(Hotbox.STATE_IDLE)");
+                    break;
+            }
+        }
+    };
+
+    public void showKeybord() {
+//        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+//        if (!KeyboardUtils.isSoftInputVisible(this)) {
+//            KeyboardUtils.showSoftInput(vweb);
+//        }
+    }
+
+    public void hideKeybord() {
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+        vweb.loadUrl("javascript:disable()");
+//        if (KeyboardUtils.isSoftInputVisible(this)) {
+//            KeyboardUtils.hideSoftInput(vweb);
+//        }
+    }
 }

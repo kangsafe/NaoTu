@@ -10,4 +10,10 @@ public interface OnJsKityCallback {
     void onToast(String msg);
 
     void onDialog(String title, String content);
+
+    void onNodeClick();
+
+    void onOutsideClick();
+
+    void onEdit();
 }

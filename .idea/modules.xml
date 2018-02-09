@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/NaoTu.iml" filepath="$PROJECT_DIR$/NaoTu.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/naotu.iml" filepath="$PROJECT_DIR$/naotu.iml" />
       <module fileurl="file://$PROJECT_DIR$/nlauncher/nlauncher.iml" filepath="$PROJECT_DIR$/nlauncher/nlauncher.iml" />
       <module fileurl="file://E:\Projects\kangsafe.github.com\naotu\nlauncher\nlauncher.iml" filepath="E:\Projects\kangsafe.github.com\naotu\nlauncher\nlauncher.iml" />
     </modules>

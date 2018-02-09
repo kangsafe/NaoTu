@@ -26,6 +26,7 @@
 		}
 
 
+
     </style>
 </head>
 <body ng-app="kityminder" ng-controller="MainController" contenteditable="false">
@@ -47,7 +48,7 @@
 <script src="file:///android_asset/kity/codemirror/mode/gfm/gfm.js"></script>
 <script src="file:///android_asset/kity/angular-ui-codemirror/ui-codemirror.js"></script>
 <script src="file:///android_asset/kity/marked/lib/marked.js"></script>
-<script src="file:///android_asset/kity/kity.min.js"></script>
+<script src="file:///android_asset/kity/kity.js"></script>
 <script src="file:///android_asset/kity/hotbox/hotbox.js"></script>
 <script src="file:///android_asset/kity/json-diff/json-diff.js"></script>
 <script src="file:///android_asset/kity/kityminder.core.js"></script>
@@ -67,6 +68,9 @@
 					window.minder = minder;
 				};
 			});
+			function disable(){
+			    $('div.receiver').attr('contenteditable',false);
+			};
 </script>
 
 </html>
