@@ -16,4 +16,6 @@ public interface OnJsKityCallback {
     void onOutsideClick();
 
     void onEdit();
+
+    void onAddLink(String url, String title);
 }

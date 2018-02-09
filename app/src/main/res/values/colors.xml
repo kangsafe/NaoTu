@@ -11,4 +11,12 @@
     <color name="kity_theme_fresh_red">#bf7373</color>
     <color name="kity_theme_fresh_soil">#bf9373</color>
     <color name="kity_theme_snow">#e9df98</color>
+    <color name="alertdialog_line">#c6c6c6</color>
+    <color name="actionsheet_blue">#037BFF</color>
+    <color name="actionsheet_red">#FD4A2E</color>
+    <color name="actionsheet_gray">#8F8F8F</color>
+    <color name="alertdialog_btn">#c6c6c6</color>
+    <color name="alert_dialog_title_color_default">#292929</color>
+    <color name="alert_dialog_input_color_default">#000000</color>
+    <color name="alert_dialog_msg_color_default">#3b3b3b</color>
 </resources>

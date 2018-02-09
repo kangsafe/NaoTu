@@ -181,6 +181,48 @@
         </menu>
     </item>
     <item
+        android:orderInCategory="104"
+        android:title="更多"
+        app:showAsAction="always">
+        <menu>
+            <group
+                android:id="@+id/action_link"
+                android:orderInCategory="100">
+                <item
+                    android:id="@+id/action_link_insert"
+                    android:icon="@drawable/icon_action_link_insert"
+                    android:title="插入链接" />
+                <item
+                    android:id="@+id/action_link_break"
+                    android:icon="@drawable/icon_action_link_break"
+                    android:title="移除链接" />
+            </group>
+            <group
+                android:id="@+id/action_picture"
+                android:orderInCategory="101">
+                <item
+                    android:id="@+id/action_picture_insert"
+                    android:icon="@drawable/icon_action_picture_insert"
+                    android:title="插入图片" />
+                <item
+                    android:id="@+id/action_picture_delete"
+                    android:icon="@drawable/icon_action_picture_delete"
+                    android:title="移除图片" />
+            </group>
+            <group
+                android:id="@+id/action_note"
+                android:orderInCategory="102">
+                <item
+                    android:id="@+id/action_note_insert"
+                    android:icon="@drawable/icon_action_note_insert"
+                    android:title="添加备注" />
+                <item
+                    android:id="@+id/action_note_delete"
+                    android:title="删除备注" />
+            </group>
+        </menu>
+    </item>
+    <item
         android:id="@+id/action_menu"
         android:icon="@mipmap/ic_launcher"
         android:title="菜单"
@@ -225,14 +267,6 @@
                 <item
                     android:id="@+id/action_mind_modify"
                     android:title="编辑" />
-            </group>
-            <group>
-                <item
-                    android:id="@+id/action_mind_link_insert"
-                    android:title="插入链接" />
-                <item
-                    android:id="@+id/action_mind_link_remove"
-                    android:title="移除链接" />
             </group>
             <group>
                 <item

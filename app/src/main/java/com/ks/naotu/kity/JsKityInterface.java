@@ -46,6 +46,11 @@ public class JsKityInterface {
     public void onEdit() {
         listener.onEdit();
     }
+
+    @JavascriptInterface
+    public void onAddLink(String url, String title) {
+        listener.onAddLink(url, title);
+    }
 //    /**
 //     * 屏幕截图
 //     * @param name

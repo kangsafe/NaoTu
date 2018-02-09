@@ -1,11 +1,15 @@
 package com.ks.naotu.kity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.ks.naotu.R;
+import com.ks.naotu.wiget.LinkDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +27,14 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import droidninja.filepicker.FilePickerBuilder;
+import droidninja.filepicker.FilePickerConst;
+import droidninja.filepicker.utils.Orientation;
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.AppSettingsDialog;
+import pub.devrel.easypermissions.EasyPermissions;
 
-public class KityMinderActivity extends AppCompatActivity implements OnJsKityCallback {
+public class KityMinderActivity extends AppCompatActivity implements OnJsKityCallback, EasyPermissions.PermissionCallbacks {
 
     @BindView(R.id.vweb)
     KityEditor vweb;
@@ -201,12 +212,57 @@ public class KityMinderActivity extends AppCompatActivity implements OnJsKityCal
             case R.id.action_theme_wire://线框图
                 vweb.loadUrl("javascript:minder.execCommand('theme','wire')");
                 break;
+            case R.id.action_picture_insert://插入图片
+                pickPhoto();
+                break;
+            case R.id.action_picture_delete://移除图片
+                vweb.loadUrl("javascript:minder.execCommand('Image', '')");
+                break;
+            case R.id.action_link_insert://添加连接
+                vweb.loadUrl("javascript:addLink()");
+                break;
+            case R.id.action_link_break://移除链接
+                vweb.loadUrl("javascript:minder.execCommand('HyperLink',null)");
+                break;
             default:
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
 
+    private void addLink(String url, String title) {
+        new LinkDialog(this).builder()
+                .setCancelable(true)
+                .setTitle("链接")
+                .setContentUrl(url)
+                .setContentTips(title)
+                .setPositiveButton(new LinkDialog.OnLinkClickListener() {
+                    @Override
+                    public void onLinkClick(View view, String url, String tips) {
+                        if (url.startsWith("http://") || url.startsWith("https://") || url.startsWith("ftp://")) {
+                            vweb.loadUrl("javascript:minder.execCommand('HyperLink','" + url + "', '" + tips + "')");
+                        } else {
+                            onToast("链接格式不正确");
+                        }
+                    }
+
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                })
+                .setNegativeButton(new LinkDialog.OnLinkClickListener() {
+                    @Override
+                    public void onLinkClick(View view, String url, String tips) {
+
+                    }
+
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                }).show();
+    }
 
     @SuppressLint("AddJavascriptInterface")
     @Override
@@ -258,6 +314,76 @@ public class KityMinderActivity extends AppCompatActivity implements OnJsKityCal
         }
     }
 
+    private static final int RC_PHOTO_PICKER_PERM = 123;
+
+    @AfterPermissionGranted(RC_PHOTO_PICKER_PERM)
+    public void pickPhoto() {
+        if (EasyPermissions.hasPermissions(this, FilePickerConst.PERMISSIONS_FILE_PICKER)) {
+            onPickPhoto();
+        } else {
+            // Ask for one permission
+            EasyPermissions.requestPermissions(
+                    this,
+                    getString(R.string.rationale_photo_picker),
+                    RC_PHOTO_PICKER_PERM,
+                    FilePickerConst.PERMISSIONS_FILE_PICKER);
+        }
+    }
+
+    public void onPickPhoto() {
+        FilePickerBuilder.getInstance()
+                .setMaxCount(1)
+//                    .setSelectedFiles(photoPaths)
+                .setActivityTheme(R.style.FilePickerTheme)
+//                    .enableVideoPicker(true)
+                .enableCameraSupport(true)
+                .showGifs(false)
+                .showFolderView(true)
+//                    .enableSelectAll(true)
+                .enableImagePicker(true)
+//                    .setCameraPlaceholder(R.drawable.custom_camera)
+                .withOrientation(Orientation.UNSPECIFIED)
+                .pickPhoto(this);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
+        if (requestCode == RC_PHOTO_PICKER_PERM) {
+            onPickPhoto();
+        }
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
+        if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
+            new AppSettingsDialog.Builder(this).build().show();
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case FilePickerConst.REQUEST_CODE_PHOTO:
+                if (resultCode == Activity.RESULT_OK && data != null) {
+                    String path = data.getStringArrayListExtra(FilePickerConst.KEY_SELECTED_MEDIA).get(0);
+                    vweb.loadUrl("javascript:minder.execCommand('image', '" + path + "', '提示')");
+                }
+                break;
+            case FilePickerConst.REQUEST_CODE_DOC:
+                if (resultCode == Activity.RESULT_OK && data != null) {
+//                    docPaths = new ArrayList<>();
+//                    docPaths.addAll(data.getStringArrayListExtra(FilePickerConst.KEY_SELECTED_DOCS));
+                }
+                break;
+        }
+    }
+
     //***************js callback start
     @Override
     public void onToast(String msg) {
@@ -288,6 +414,17 @@ public class KityMinderActivity extends AppCompatActivity implements OnJsKityCal
     public void onEdit() {
         handler.sendEmptyMessage(0);
     }
+
+    @Override
+    public void onAddLink(String url, String title) {
+        Message message = new Message();
+        message.what = 3;
+        Bundle b = new Bundle();
+        b.putString("url", url);
+        b.putString("title", title);
+        message.setData(b);
+        handler.sendMessage(message);
+    }
     //****js callbak end
 
     Handler handler = new Handler() {
@@ -303,6 +440,10 @@ public class KityMinderActivity extends AppCompatActivity implements OnJsKityCal
                     break;
                 case 2:
                     vweb.loadUrl("javascript:minder.hotbox.active(Hotbox.STATE_IDLE)");
+                    break;
+                case 3:
+                    Bundle b = msg.getData();
+                    addLink(b.getString("url"), b.getString("title"));
                     break;
             }
         }

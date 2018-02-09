@@ -27,6 +27,7 @@
 
 
 
+
     </style>
 </head>
 <body ng-app="kityminder" ng-controller="MainController" contenteditable="false">
@@ -70,7 +71,13 @@
 			});
 			function disable(){
 			    $('div.receiver').attr('contenteditable',false);
-			};
+			}
+
+			function addLink(){
+			    var link = minder.queryCommandValue('HyperLink');
+			    console.log(link);
+			    window.kminder.onAddLink(link.url||'',link.title||'');
+			}
 </script>
 
 </html>
