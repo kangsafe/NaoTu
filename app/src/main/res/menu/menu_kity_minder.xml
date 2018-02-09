@@ -1,12 +1,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_redo"
+        android:id="@+id/action_undo"
+        android:icon="@drawable/icon_action_undo"
         android:orderInCategory="100"
         android:title="撤销"
         app:showAsAction="always" />
     <item
-        android:id="@+id/action_undo"
+        android:id="@+id/action_redo"
+        android:icon="@drawable/icon_action_redo"
         android:orderInCategory="101"
         android:title="重做"
         app:showAsAction="always" />
@@ -18,6 +20,7 @@
         app:showAsAction="always">
         <menu>
             <group
+                android:id="@+id/action_template"
                 android:checkableBehavior="single"
                 android:enabled="true"
                 android:menuCategory="secondary"
@@ -59,20 +62,20 @@
                 android:orderInCategory="101"
                 android:title="整理布局" />
             <item
-                android:icon="@drawable/icon_style_clear"
                 android:id="@+id/action_style_clear"
+                android:icon="@drawable/icon_style_clear"
                 android:orderInCategory="102"
                 android:title="清除样式" />
         </menu>
     </item>
     <item
-        android:id="@+id/action_theme"
         android:icon="@drawable/icon_theme"
         android:orderInCategory="103"
         android:title="主题"
         app:showAsAction="always">
         <menu>
             <group
+                android:id="@+id/action_theme"
                 android:checkableBehavior="single"
                 android:menuCategory="secondary">
                 <item

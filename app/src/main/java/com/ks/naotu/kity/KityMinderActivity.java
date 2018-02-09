@@ -103,54 +103,37 @@ public class KityMinderActivity extends AppCompatActivity implements OnJsKityCal
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getGroupId() == R.id.action_template || item.getGroupId() == R.id.action_theme) {
+            if (!item.isChecked()) {
+                item.setChecked(true);
+            } else {
+                item.setChecked(false);
+            }
+        }
         switch (item.getItemId()) {
+            case R.id.action_redo:
+                vweb.loadUrl("javascript:editor.history.hasRedo() == false || editor.history.redo()");
+                break;
+            case R.id.action_undo:
+                vweb.loadUrl("javascript:editor.history.hasUndo() == false || editor.history.undo()");
+                break;
             case R.id.action_template_mind://思维导图minder.execCommand('template', key);
                 vweb.loadUrl("javascript:minder.execCommand('template','default')");
-                if (!item.isChecked()) {
-                    item.setChecked(true);
-                } else {
-                    item.setChecked(false);
-                }
                 break;
             case R.id.action_template_file_tree://目录组织图
                 vweb.loadUrl("javascript:minder.execCommand('template','filetree')");
-                if (!item.isChecked()) {
-                    item.setChecked(true);
-                } else {
-                    item.setChecked(false);
-                }
                 break;
             case R.id.action_template_structure://组织结构图
                 vweb.loadUrl("javascript:minder.execCommand('template','structure')");
-                if (!item.isChecked()) {
-                    item.setChecked(true);
-                } else {
-                    item.setChecked(false);
-                }
                 break;
             case R.id.action_template_right://逻辑结构图
                 vweb.loadUrl("javascript:minder.execCommand('template','right')");
-                if (!item.isChecked()) {
-                    item.setChecked(true);
-                } else {
-                    item.setChecked(false);
-                }
                 break;
             case R.id.action_template_fish_bone://逻辑结构图
                 vweb.loadUrl("javascript:minder.execCommand('template','fish-bone')");
-                if (!item.isChecked()) {
-                    item.setChecked(true);
-                } else {
-                    item.setChecked(false);
-                }
                 break;
             case R.id.action_template_tianpan://逻辑结构图
                 vweb.loadUrl("javascript:minder.execCommand('template','tianpan')");
-                if (!item.isChecked()) {
-                    item.setChecked(true);
-                } else {
-                    item.setChecked(false);
-                }
                 break;
             case R.id.action_layout_reset://整理布局
                 vweb.loadUrl("javascript:minder.execCommand('resetlayout')");
@@ -160,163 +143,63 @@ public class KityMinderActivity extends AppCompatActivity implements OnJsKityCal
                 break;
             case R.id.action_theme_classic://脑图经典
                 vweb.loadUrl("javascript:minder.execCommand('theme','classic')");
-                if (!item.isChecked()) {
-                    item.setChecked(true);
-                } else {
-                    item.setChecked(false);
-                }
                 break;
             case R.id.action_theme_classic_compact://紧凑经典
                 vweb.loadUrl("javascript:minder.execCommand('theme','classic-compact')");
-                if (!item.isChecked()) {
-                    item.setChecked(true);
-                } else {
-                    item.setChecked(false);
-                }
                 break;
             case R.id.action_theme_fresh_blue://天空蓝
                 vweb.loadUrl("javascript:minder.execCommand('theme','fresh-blue')");
-                if (!item.isChecked()) {
-                    item.setChecked(true);
-                } else {
-                    item.setChecked(false);
-                }
                 break;
             case R.id.action_theme_fresh_blue_compat://紧凑蓝
                 vweb.loadUrl("javascript:minder.execCommand('theme','fresh-blue-compat')");
-                if (!item.isChecked()) {
-                    item.setChecked(true);
-                } else {
-                    item.setChecked(false);
-                }
                 break;
             case R.id.action_theme_fresh_green://文艺绿
                 vweb.loadUrl("javascript:minder.execCommand('theme','fresh-green')");
-                if (!item.isChecked()) {
-                    item.setChecked(true);
-                } else {
-                    item.setChecked(false);
-                }
                 break;
             case R.id.action_theme_fresh_green_compat://紧凑绿
                 vweb.loadUrl("javascript:minder.execCommand('theme','fresh-green-compat')");
-                if (!item.isChecked()) {
-                    item.setChecked(true);
-                } else {
-                    item.setChecked(false);
-                }
                 break;
             case R.id.action_theme_fresh_pink://脑残粉
                 vweb.loadUrl("javascript:minder.execCommand('theme','fresh-pink')");
-                if (!item.isChecked()) {
-                    item.setChecked(true);
-                } else {
-                    item.setChecked(false);
-                }
                 break;
             case R.id.action_theme_fresh_pink_compat://紧凑粉
                 vweb.loadUrl("javascript:minder.execCommand('theme','fresh-pink-compat')");
-                if (!item.isChecked()) {
-                    item.setChecked(true);
-                } else {
-                    item.setChecked(false);
-                }
                 break;
             case R.id.action_theme_fresh_purple://浪漫紫
                 vweb.loadUrl("javascript:minder.execCommand('theme','fresh-purple')");
-                if (!item.isChecked()) {
-                    item.setChecked(true);
-                } else {
-                    item.setChecked(false);
-                }
                 break;
             case R.id.action_theme_fresh_purple_compat://紧凑紫
                 vweb.loadUrl("javascript:minder.execCommand('theme','fresh-purple-compat')");
-                if (!item.isChecked()) {
-                    item.setChecked(true);
-                } else {
-                    item.setChecked(false);
-                }
                 break;
             case R.id.action_theme_fresh_red://清新红
                 vweb.loadUrl("javascript:minder.execCommand('theme','fresh-red')");
-                if (!item.isChecked()) {
-                    item.setChecked(true);
-                } else {
-                    item.setChecked(false);
-                }
                 break;
             case R.id.action_theme_fresh_red_compat://紧凑红
                 vweb.loadUrl("javascript:minder.execCommand('theme','fresh-red-compat')");
-                if (!item.isChecked()) {
-                    item.setChecked(true);
-                } else {
-                    item.setChecked(false);
-                }
                 break;
             case R.id.action_theme_fresh_soil://泥土黄
                 vweb.loadUrl("javascript:minder.execCommand('theme','fresh-soil')");
-                if (!item.isChecked()) {
-                    item.setChecked(true);
-                } else {
-                    item.setChecked(false);
-                }
                 break;
             case R.id.action_theme_fresh_soil_compat://紧凑黄
                 vweb.loadUrl("javascript:minder.execCommand('theme','fresh-soil-compat')");
-                if (!item.isChecked()) {
-                    item.setChecked(true);
-                } else {
-                    item.setChecked(false);
-                }
                 break;
             case R.id.action_theme_snow://温柔冷光
                 vweb.loadUrl("javascript:minder.execCommand('theme','snow')");
-                if (!item.isChecked()) {
-                    item.setChecked(true);
-                } else {
-                    item.setChecked(false);
-                }
                 break;
             case R.id.action_theme_snow_compact://紧凑冷光
                 vweb.loadUrl("javascript:minder.execCommand('theme','snow-compact')");
-                if (!item.isChecked()) {
-                    item.setChecked(true);
-                } else {
-                    item.setChecked(false);
-                }
                 break;
             case R.id.action_theme_tianpan://经典天盘
                 vweb.loadUrl("javascript:minder.execCommand('theme','tianpan')");
-                if (!item.isChecked()) {
-                    item.setChecked(true);
-                } else {
-                    item.setChecked(false);
-                }
                 break;
             case R.id.action_theme_tianpan_compact://紧凑天盘
                 vweb.loadUrl("javascript:minder.execCommand('theme','tianpan-compact')");
-                if (!item.isChecked()) {
-                    item.setChecked(true);
-                } else {
-                    item.setChecked(false);
-                }
                 break;
             case R.id.action_theme_fish://鱼骨图
                 vweb.loadUrl("javascript:minder.execCommand('theme','fish')");
-                if (!item.isChecked()) {
-                    item.setChecked(true);
-                } else {
-                    item.setChecked(false);
-                }
                 break;
             case R.id.action_theme_wire://线框图
                 vweb.loadUrl("javascript:minder.execCommand('theme','wire')");
-                if (!item.isChecked()) {
-                    item.setChecked(true);
-                } else {
-                    item.setChecked(false);
-                }
                 break;
             default:
                 break;
@@ -364,10 +247,10 @@ public class KityMinderActivity extends AppCompatActivity implements OnJsKityCal
                 break;
             case R.id.kity_move_hand:
                 vweb.loadUrl("javascript:minder.execCommand('hand')");
-                if(kityMoveHand.getTag().toString().equals("move")) {
+                if (kityMoveHand.getTag().toString().equals("move")) {
                     kityMoveHand.setImageResource(R.mipmap.icon_move_selected);
                     kityMoveHand.setTag("selected");
-                }else{
+                } else {
                     kityMoveHand.setImageResource(R.mipmap.move);
                     kityMoveHand.setTag("move");
                 }
