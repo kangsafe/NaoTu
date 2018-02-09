@@ -1372,7 +1372,7 @@ div a.theme-item {
 .nav-bar {
   position: absolute;
   width: 35px;
-  height: 240px;
+  /*height: 240px;*/
   padding: 5px 0;
   left: 10px;
   bottom: 10px;
