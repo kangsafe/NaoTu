@@ -1,1 +1,2 @@
-include ':app', ':nlauncher'
+include ':app'
+//include ':nlauncher'

@@ -3,8 +3,6 @@ apply plugin: 'com.jakewharton.butterknife'
 android {
     compileSdkVersion 26
 
-
-
     defaultConfig {
         applicationId "com.ks.nlauncher"
         minSdkVersion 14
